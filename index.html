@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<meta name="theme-color" content="#f2f5f1">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="질문 5개로 나에게 맞는 사과 품종 3개를 추천받아 보세요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="내게 맞는 사과 찾기">
+<meta property="og:description" content="질문 5개로 나에게 맞는 사과 품종 3개를 추천받아 보세요.">
+<title>내게 맞는 사과 찾기</title>
+<style>html{color-scheme:light;-webkit-text-size-adjust:100%;text-size-adjust:100%}html,body{margin:0;background:#f2f5f1}</style>
+</head>
+<body>
+<style>
+#apk{--bg:#f2f5f1;--surface:#ffffff;--ink:#1c2822;--muted:#5b6b62;--line:#d6ddd5;--apple:#b3262e;--apple-soft:#f6e3e3;--leaf:#2f6a45;--leaf-soft:#e0eee4;--gold:#9a7412;--display:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",Roboto,"Malgun Gothic",sans-serif;--body:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",Roboto,"Malgun Gothic",sans-serif;font-size:15px;line-height:1.65;text-align:left;-webkit-text-size-adjust:100%}
+#apk *,#apk *::before,#apk *::after{box-sizing:border-box}
+#apk [hidden]{display:none!important}
+#apk .bar>i{transition:width .3s}
+#apk .primary,#apk .chip[aria-pressed="true"]{color:#fff}
+#apk{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.65;padding:20px 16px 40px;box-sizing:border-box}
+#apk .wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+#apk h1,#apk h2,#apk h3{font-family:var(--display);line-height:1.3;margin:0;text-wrap:balance}
+#apk h1{font-size:26px}
+#apk h2{font-size:20px}
+#apk h3{font-size:17px}
+#apk p{margin:0}
+#apk header p{color:var(--muted);margin-top:6px}
+#apk nav{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+#apk nav button{flex:1;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:500 14px var(--body);padding:10px 4px;cursor:pointer}
+#apk nav button[aria-selected="true"]{color:var(--apple);border-bottom-color:var(--apple);font-weight:700}
+#apk button:focus-visible,#apk a:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+#apk .panel[hidden]{display:none}
+#apk .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+#apk .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+#apk .bar>i{display:block;height:100%;background:var(--leaf)}
+#apk .step{font:500 12px var(--body);letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+#apk .opts{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+#apk .opt{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:13px 14px;color:var(--ink);font:500 15px var(--body);cursor:pointer}
+#apk .opt small{display:block;color:var(--muted);font-weight:400;font-size:13px;margin-top:2px}
+#apk .opt:hover{border-color:var(--leaf)}
+#apk .ghost{background:none;border:0;color:var(--muted);font:400 13px var(--body);cursor:pointer;padding:8px 0;text-decoration:underline}
+#apk .primary{background:var(--apple);color:#fff;border:0;border-radius:8px;padding:11px 16px;font:700 14px var(--body);cursor:pointer}
+#apk .res{display:flex;flex-direction:column;gap:14px}
+#apk .rank{display:flex;gap:12px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+#apk .score{font:700 15px var(--body);color:var(--apple);font-variant-numeric:tabular-nums}
+#apk .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+#apk .tag{font-size:12px;background:var(--leaf-soft);color:var(--leaf);border-radius:20px;padding:2px 10px}
+#apk .tag.warn{background:var(--apple-soft);color:var(--apple)}
+#apk .map{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin-top:10px;font-size:13px;align-items:center}
+#apk .map span{color:var(--muted)}
+#apk .map .bar>i.s{background:var(--apple)}
+#apk .map .bar>i.a{background:var(--gold)}
+#apk .note{font-size:13px;color:var(--muted)}
+#apk .why{margin-top:10px;font-size:14px}
+#apk .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+#apk table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
+#apk th,#apk td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+#apk th{font-weight:700;color:var(--muted);font-size:12px;white-space:nowrap}
+#apk td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+#apk tr:last-child td{border-bottom:0}
+#apk .vgrid{display:flex;flex-direction:column;gap:12px}
+#apk .chips{display:flex;flex-wrap:wrap;gap:6px}
+#apk .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:20px;padding:5px 12px;font:500 13px var(--body);cursor:pointer}
+#apk .chip[aria-pressed="true"]{background:var(--leaf);color:#fff;border-color:var(--leaf)}
+#apk .paper{display:flex;flex-direction:column;gap:4px}
+#apk .paper a{color:var(--leaf);overflow-wrap:anywhere}
+#apk ul.plain{margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+#apk footer{font-size:12px;color:var(--muted)}
+#apk .hd{display:flex;gap:14px;align-items:flex-start}
+#apk .hdt{min-width:0;flex:1}
+#apk .pic{position:relative;flex:none;display:block;border-radius:10px;overflow:hidden;background:var(--leaf-soft)}
+#apk .pic svg,#apk .pic img{display:block;width:100%;height:100%}
+#apk .pic img{position:absolute;left:0;top:0;object-fit:cover}
+#apk .thumb{display:flex;gap:10px;align-items:center}
+/* 구형 iOS/Android 대응: flex gap 대신 margin */
+#apk .wrap,#apk .opts,#apk .res,#apk .vgrid,#apk .paper,#apk ul.plain,#apk .tags,#apk .chips,#apk .rank,#apk .hd,#apk .thumb,#apk nav{gap:0}
+#apk .wrap>*+*{margin-top:20px}
+#apk .opts>*+*{margin-top:10px}
+#apk .res>*+*{margin-top:14px}
+#apk .vgrid>*+*{margin-top:12px}
+#apk .paper>*+*{margin-top:12px}
+#apk ul.plain>*+*{margin-top:6px}
+#apk .tags{margin-top:2px}
+#apk .tag{display:inline-block;margin:4px 6px 2px 0}
+#apk .tags{display:block}
+#apk .chips{display:block}
+#apk .chips .chip{margin:0 6px 6px 0}
+#apk .rank h3{margin-right:12px}
+#apk .hd>.pic{margin-right:14px}
+#apk .thumb>.pic{margin-right:10px}
+#apk button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-appearance:none;appearance:none}
+#apk nav button{min-height:44px}
+#apk .chip{min-height:36px}
+#apk{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+</style>
+
+
+<noscript><p style="padding:16px">이 페이지는 JavaScript가 켜진 브라우저(Safari, Chrome)에서 열어야 퀴즈가 보입니다.</p></noscript>
+<div id="apk"><div class="wrap">
+<header>
+  <h1>내게 맞는 사과 찾기</h1>
+  <p>질문 5개에 답하면 국내에서 살 수 있는 사과 중 어울리는 품종 3개를 골라드립니다.</p>
+</header>
+<nav role="tablist" aria-label="메뉴">
+  <button role="tab"  aria-selected="true" data-tab="quiz">추천 퀴즈</button>
+  <button role="tab"  aria-selected="false" data-tab="list">품종 도감</button>
+  <button role="tab"  aria-selected="false" data-tab="sci">맛의 성분</button>
+</nav>
+
+<section class="panel" id="apk-quiz"><div class="card"><p class="note">퀴즈를 불러오는 중입니다…</p></div></section>
+
+<section class="panel" id="apk-list" hidden>
+  <div class="vgrid">
+    <div class="chips" id="apk-seasonChips" aria-label="수확 시기 필터"></div>
+    <div class="tblwrap"><table id="apk-tbl"></table></div>
+    <p class="note">당도·산도는 농촌진흥청, 지자체, 언론 보도 수치입니다. 재배지와 해에 따라 달라집니다. 빈 칸은 확인하지 못한 값입니다.</p>
+  </div>
+</section>
+
+<section class="panel" id="apk-sci" hidden>
+  <div class="vgrid" id="apk-sciBody"></div>
+</section>
+
+<footer>
+  추천 점수의 단맛·신맛·식감·향 등급은 공개된 당도·산도 수치와 품종 설명, 아래 논문의 관능평가 결과를 바탕으로 매긴 추정값입니다. 구입 전 판매자의 실제 당도 표기를 함께 확인하세요. 품종 그림은 대표 색을 본뜬 일러스트라 실제 과일과 다를 수 있습니다.
+</footer>
+</div>
+</div>
+
+<script>
+/* 데이터: sw 단맛, so 신맛, cr 아삭함, ar 향 (1~5, 추정). season [8월~9월초, 9월중순~10월, 11월~봄] */
+var V=[
+{n:"쓰가루(아오리)",o:"일본",br:"13~14",ta:"0.30",h:"8월 중순~하순",sw:3,so:2,cr:2,ar:3,se:[1,0,0],u:["eat","kids"],t:"달콤하고 상큼, 과육은 부드러운 편",e:"여름 사과라 저장성이 짧고 덜 익었을 때 먹기도 합니다."},
+{n:"홍로",o:"국산",br:"14~15",ta:"0.2~0.3",h:"9월 상·중순",sw:4,so:1,cr:4,ar:2,se:[1,.5,0],u:["gift","eat"],t:"단맛이 두드러지고 신맛이 적음. 단단하고 즙이 많음",e:"한국 소비자 평가에서 단맛·사과향이 낮고 오이 같은 풋내가 두드러졌다는 연구가 있습니다."},
+{n:"아리수",o:"국산",br:"13.5~14.5",ta:"0.30~0.35",h:"8월 하순~9월 초",sw:3,so:3,cr:5,ar:4,se:[1,.5,0],u:["eat","kids","gift"],t:"새콤달콤 균형, 아삭하고 과즙 많음",e:"2025년 연구에서 단맛·신맛·과일·사과·파인애플 향 점수와 선호도가 높았습니다."},
+{n:"아리원",o:"국산",br:"16.2",ta:"0.34",h:"8월 하순",sw:5,so:3,cr:4,ar:4,se:[1,0,0],u:["gift","eat"],t:"당도가 높고 단맛과 신맛이 조화로움",e:"2025년 연구에서 아리수와 함께 관능 점수와 선호도가 높았습니다."},
+{n:"이지플",o:"국산",br:"16.7",ta:"0.41",h:"9월 상순",sw:5,so:3,cr:4,ar:3,se:[1,.5,0],u:["gift","eat"],t:"단맛과 새콤함이 조화, 평균 338g으로 큼",e:"홍로와 감홍을 교배해 2019년 육성했습니다."},
+{n:"골든볼",o:"국산",br:"14.8",ta:"0.51",h:"8월",sw:3,so:4,cr:5,ar:3,se:[1,0,0],u:["eat"],t:"노란 껍질, 달콤새콤하고 진한 맛",e:"여름 사과로는 드물게 단단해 상온 15일 유통이 가능하다고 합니다."},
+{n:"감로",o:"국산",br:"15.7~15.9",ta:"0.37",h:"9월 중·하순",sw:4,so:3,cr:4,ar:5,se:[.3,1,0],u:["gift","eat"],t:"과즙이 많고 특유의 향과 풍미가 있음",e:"감홍과 홍로를 교배한 품종입니다."},
+{n:"양광",o:"국산",br:"",ta:"0.43",h:"9월 하순~10월 초",sw:3,so:4,cr:5,ar:4,se:[0,1,0],u:["eat","cook"],t:"신맛이 먼저 오고 단맛이 따라옴, 속이 단단하고 갈변이 적음",e:"연구에서 단맛·사과향 점수가 감홍과 후지보다 낮았습니다."},
+{n:"시나노스위트",o:"일본",br:"약 15",ta:"",h:"9월 하순~10월 중순(자료마다 다름)",sw:5,so:1,cr:4,ar:3,se:[0,1,0],u:["eat","kids"],t:"부드럽고 달콤, 신맛 거의 없음",e:"쓰가루와 후지를 교배했습니다."},
+{n:"시나노골드",o:"일본",br:"13~14",ta:"0.44",h:"10월 초~중순",sw:3,so:3,cr:5,ar:4,se:[0,1,0],u:["eat","gift"],t:"노란 껍질, 아삭하고 시원한 단맛, 열대과일 향이 은은함",e:"껍질이 얇고 과즙이 풍부합니다."},
+{n:"감홍",o:"국산",br:"15~16",ta:"0.40",h:"10월 중순 전후",sw:5,so:3,cr:5,ar:5,se:[0,1,.5],u:["gift","eat"],t:"진하고 깊은 단맛, 과즙 풍부, 향이 진함",e:"소비자 평가에서 후지와 같은 수준으로 선호도가 높았고, 사과향·과일향을 내는 에스터류가 많았습니다."},
+{n:"부사(후지)",o:"일본",br:"14~15",ta:"0.40",h:"10월 하순~11월",sw:4,so:3,cr:4,ar:4,se:[0,.3,1],u:["eat","gift"],t:"단단하고 단맛과 신맛의 균형이 좋음",e:"저장성이 뛰어나 늦가을부터 봄까지 유통됩니다. 12월 이후 맛이 좋다는 설명도 있습니다."},
+{n:"홍옥",o:"미국 도입",br:"13",ta:"0.60",h:"9월 중순~",sw:2,so:5,cr:3,ar:3,se:[0,1,0],u:["cook","eat"],t:"신맛이 도드라지고 식감이 푸석한 편",e:"한국산 사과 유기산 조사에서 총 유기산이 가장 많았습니다(630mg%, 1997년 수확)."}
+];
+var IMG={
+"쓰가루(아오리)":{id:"tsugaru",c:["#d6e58a","#b5cf5a","#8aa83a"],bl:"#d9473f",st:"#b8322c"},
+"홍로":{id:"hongro",c:["#d9525a","#a8232b","#781219"]},
+"아리수":{id:"arisoo",c:["#ea716c","#c93a3a","#8f2024"],st:"#8f2024"},
+"아리원":{id:"ariwon",c:["#f2bd62","#dd6a3d","#a63a22"],bl:"#c8323a"},
+"이지플":{id:"easypple",c:["#dd5a60","#b52a33","#7f1620"]},
+"골든볼":{id:"goldenball",c:["#fbe681","#f1c93b","#c9971c"]},
+"감로":{id:"gamro",c:["#f2b960","#d9663f","#a63f25"],bl:"#c9363b"},
+"양광":{id:"yanggwang",c:["#f0636a","#d3262f","#8e121b"]},
+"시나노스위트":{id:"shinanosweet",c:["#e8787a","#c9373d","#8c1f26"],st:"#8c1f26"},
+"시나노골드":{id:"shinanogold",c:["#f5ec86","#e3d24a","#b9a82b"]},
+"감홍":{id:"gamhong",c:["#bd4c58","#8f1d2c","#5e0f1b"],sp:"#e0bb85"},
+"부사(후지)":{id:"fuji",c:["#ec9094","#c9444b","#8f2a30"],st:"#a8333a"},
+"홍옥":{id:"hongok",c:["#aa3d4d","#7d1522","#4d0a14"]}
+};
+V.forEach(function(v){var m=IMG[v.n];for(var k in m)v[k]=m[k]});
+var BODY="M50 30C38 20 14 26 14 52C14 74 30 92 42 92C46 92 48 90 50 90C52 90 54 92 58 92C70 92 86 74 86 52C86 26 62 20 50 30Z";
+var GID=0;
+function apple(v){
+ var g="ag"+(GID++),c=v.c,s="";
+ s+='<svg viewBox="0 0 100 100" role="img" aria-label="'+v.n+' 그림"><defs><radialGradient id="'+g+'" cx=".38" cy=".35" r=".75"><stop offset="0" stop-color="'+c[0]+'"/><stop offset=".6" stop-color="'+c[1]+'"/><stop offset="1" stop-color="'+c[2]+'"/></radialGradient><clipPath id="'+g+'c"><path d="'+BODY+'"/></clipPath></defs>';
+ s+='<path d="'+BODY+'" fill="url(#'+g+')"/><g clip-path="url(#'+g+'c)">';
+ if(v.bl)s+='<ellipse cx="70" cy="58" rx="32" ry="42" fill="'+v.bl+'" opacity=".5"/>';
+ if(v.st)s+='<g fill="none" stroke="'+v.st+'" stroke-width="2.2" opacity=".35"><path d="M28 34C24 56 28 76 40 92"/><path d="M42 30C40 54 42 74 48 92"/><path d="M58 30C62 52 60 74 56 92"/><path d="M72 34C78 54 74 74 62 90"/></g>';
+ if(v.sp){s+='<g fill="'+v.sp+'" opacity=".7">';[[34,50],[44,64],[60,48],[66,70],[52,78],[72,56],[40,40]].forEach(function(p){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="1.5"/>'});s+='</g>'}
+ s+='</g><ellipse cx="33" cy="47" rx="6" ry="11" fill="#fff" opacity=".22" transform="rotate(18 33 47)"/><path d="M50 31C50 23 52 17 56 12" stroke="#5b3a1e" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M54 21C60 11 72 11 76 15C72 23 62 25 54 21Z" fill="#4f8a3c"/></svg>';
+ return s;
+}
+function pic(v,n){return '<span class="pic" style="width:'+n+'px;height:'+n+'px">'+apple(v)+'<img src="photos/'+v.id+'.jpg" alt="'+v.n+'" loading="lazy" onerror="this.remove()"></span>'}
+var USE={eat:"생으로",gift:"선물",kids:"아이 간식",cook:"요리·베이킹"};
+var Q=[
+{k:"taste",q:"어떤 맛을 좋아하세요?",o:[["달콤한 맛이 중심","신맛은 거의 없어야 해요",{sw:5,so:1}],["새콤달콤한 균형","가장 흔한 사과 맛이에요",{sw:4,so:3}],["새콤한 맛이 살아 있는 쪽","상큼한 사과를 좋아해요",{sw:3,so:5}]]},
+{k:"tex",q:"식감은요?",o:[["아삭하고 단단한 것","씹는 소리가 나는 사과",{cr:5}],["부드럽고 촉촉한 것","이가 약하거나 부드러운 쪽",{cr:2}],["상관없어요","",null]]},
+{k:"aro",q:"향은 어느 쪽이 좋으세요?",o:[["향긋하고 진한 풍미","과일향, 꿀향이 느껴지는 쪽",{ar:5}],["깔끔하고 담백한 맛","향보다 시원한 맛",{ar:2}],["상관없어요","",null]]},
+{k:"sea",q:"언제 드실 건가요?",o:[["8월~9월 초","여름과 이른 추석 무렵",0],["9월 중순~10월","지금부터 가을",1],["11월 이후","겨울과 봄까지 두고 먹기",2],["시기는 상관없어요","",-1]]},
+{k:"use",q:"어떤 용도인가요?",o:[["그냥 먹을 용도","",{u:"eat"}],["선물용","크기와 외관이 좋은 것",{u:"gift"}],["아이 간식","작고 먹기 쉬운 것",{u:"kids"}],["요리·베이킹","열을 가해도 맛이 남는 것",{u:"cook"}]]}
+];
+var ans={},step=0;
+var ROOT=document.getElementById("apk");var $=function(s){return ROOT.querySelector(s)};
+function each(l,f){Array.prototype.forEach.call(l,f)}
+function stars(v){return Math.round(v/5*100)+"%"}
+
+function renderQ(){
+  var el=$("#apk-quiz");
+  if(step>=Q.length){return renderR(el)}
+  var q=Q[step];
+  var h='<div class="card"><div class="step">질문 '+(step+1)+' / '+Q.length+'</div><div class="bar" aria-hidden="true"><i style="width:'+(step/Q.length*100)+'%"></i></div><h2 style="margin-top:14px">'+q.q+'</h2><div class="opts">';
+  q.o.forEach(function(o,i){h+='<button class="opt" data-i="'+i+'">'+o[0]+(o[1]?'<small>'+o[1]+'</small>':'')+'</button>'});
+  h+='</div>'+(step>0?'<button class="ghost" id="apk-back">이전 질문</button>':'')+'</div>';
+  el.innerHTML=h;
+  each(el.querySelectorAll(".opt"),function(b){b.onclick=function(){ans[q.k]=q.o[+b.dataset.i][2];step++;renderQ()}});
+  var bk=$("#apk-back"); if(bk)bk.onclick=function(){step--;renderQ()};
+}
+function score(v){
+  var s=0,m=[],a=ans;
+  var t=a.taste; var tw=40;
+  var d=(Math.abs(v.sw-t.sw)+Math.abs(v.so-t.so))/8; s+=tw*(1-d);
+  s+= a.tex?15*(1-Math.abs(v.cr-a.tex.cr)/4):15*.7;
+  s+= a.aro?15*(1-Math.abs(v.ar-a.aro.ar)/4):15*.7;
+  if(a.sea===-1||a.sea===undefined) s+=20*.8; else s+=20*v.se[a.sea];
+  s+= v.u.indexOf(a.use.u)>-1?10:(a.use.u==="eat"?6:0);
+  return Math.round(s);
+}
+function renderR(el){
+  var r=V.map(function(v){return{v:v,s:score(v)}}).sort(function(a,b){return b.s-a.s}).slice(0,3);
+  var h='<div class="res"><div><h2>추천 품종 3가지</h2><p class="note" style="margin-top:4px">일치도는 답변과 품종 특성이 얼마나 가까운지 보여주는 점수입니다.</p></div>';
+  r.forEach(function(x,i){
+    var v=x.v,seasonOk=(ans.sea===-1||ans.sea===undefined||v.se[ans.sea]>0);
+    h+='<div class="card"><div class="hd">'+pic(v,84)+'<div class="hdt"><div class="rank"><h3>'+(i+1)+'. '+v.n+'</h3><span class="score">일치도 '+x.s+'%</span></div>'
+    +'<div class="tags"><span class="tag">'+v.o+'</span><span class="tag">수확 '+v.h+'</span>'+(v.br?'<span class="tag">당도 '+v.br+' Bx</span>':'')+(v.ta?'<span class="tag">산도 '+v.ta+'%</span>':'')
+    +(seasonOk?'':'<span class="tag warn">고른 시기에는 구하기 어려울 수 있음</span>')+'</div>'
+    +'</div></div><p class="why">'+v.t+'</p>'
+    +'<div class="map"><span>단맛</span><div class="bar"><i class="s" style="width:'+stars(v.sw)+'"></i></div><span>신맛</span><div class="bar"><i style="width:'+stars(v.so)+'"></i></div><span>아삭함</span><div class="bar"><i style="width:'+stars(v.cr)+'"></i></div><span>향</span><div class="bar"><i class="a" style="width:'+stars(v.ar)+'"></i></div></div>'
+    +'<p class="note" style="margin-top:10px">'+v.e+'</p></div>';
+  });
+  h+='<div><button class="primary" id="apk-redo">다시 해보기</button></div></div>';
+  el.innerHTML=h; $("#apk-redo").onclick=function(){ans={};step=0;renderQ()};
+}
+
+/* 도감 */
+var sf=-1;
+function renderList(){
+  var chips=[["전체",-1],["8월~9월 초",0],["9월 중순~10월",1],["11월 이후",2]];
+  $("#apk-seasonChips").innerHTML=chips.map(function(c){return '<button class="chip" aria-pressed="'+(sf===c[1])+'" data-s="'+c[1]+'">'+c[0]+'</button>'}).join("");
+  each(ROOT.querySelectorAll("#apk-seasonChips .chip"),function(b){b.onclick=function(){sf=+b.dataset.s;renderList()}});
+  var rows=V.filter(function(v){return sf<0||v.se[sf]>0});
+  $("#apk-tbl").innerHTML='<thead><tr><th>품종</th><th>수확</th><th>당도(Bx)</th><th>산도(%)</th><th>맛·식감</th></tr></thead><tbody>'+rows.map(function(v){return '<tr><td><div class="thumb">'+pic(v,40)+'<div><b>'+v.n+'</b><br><span class="note">'+v.o+'</span></div></div></td><td>'+v.h+'</td><td class="n">'+(v.br||"-")+'</td><td class="n">'+(v.ta||"-")+'</td><td>'+v.t+'</td></tr>'}).join("")+'</tbody>';
+}
+
+/* 성분 */
+function renderSci(){
+  $("#apk-sciBody").innerHTML=
+'<div class="card"><h2>맛은 무엇으로 정해지나</h2><ul class="plain">'
++'<li><b>단맛·신맛</b>은 당류(과당, 포도당, 자당, 소르비톨)와 유기산(주로 사과산)의 양과 비율에서 나옵니다. 한국산 사과 유기산의 약 95%가 사과산입니다.</li>'
++'<li><b>사과향·과일향</b>은 에스터류가 만듭니다. 한국 품종 연구에서 hexyl acetate, 2-methylbutyl acetate 등이 사과향·과일향과 연결됐고, 감홍과 후지에 많았습니다.</li>'
++'<li><b>풋내·오이향</b>은 일부 알데하이드가 만듭니다. 홍로에서만 검출된 (E)-2-nonenal이 오이향과 낮은 선호도에 연결됐습니다.</li>'
++'<li><b>향은 품종마다 다릅니다.</b> 2-methylbutyl acetate는 후지의 대표 향 성분으로 보고됩니다. 같은 품종도 고도, 숙도에 따라 달라집니다.</li></ul></div>'
++'<div class="card"><h2>국내 주요 4품종 측정 비교</h2><p class="note" style="margin:6px 0 10px">안동대 연구(2023), 경북 재배, 2020·2021년 평균. 소비자 100명 평가(2021).</p><div class="tblwrap" style="border:0"><table style="min-width:480px"><thead><tr><th>품종</th><th>당도(Bx)</th><th>산도(%)</th><th>전체 선호도</th><th>단맛 점수</th></tr></thead><tbody>'
++'<tr><td>감홍</td><td class="n">15.26</td><td class="n">0.22</td><td class="n">50.5</td><td class="n">45.6</td></tr>'
++'<tr><td>후지</td><td class="n">14.24</td><td class="n">0.26</td><td class="n">52.5</td><td class="n">49.1</td></tr>'
++'<tr><td>양광</td><td class="n">13.37</td><td class="n">0.25</td><td class="n">31.7</td><td class="n">29.7</td></tr>'
++'<tr><td>홍로</td><td class="n">12.44</td><td class="n">0.21</td><td class="n">26.8</td><td class="n">32.9</td></tr></tbody></table></div>'
++'<p class="note" style="margin-top:8px">당도만으로 선호도가 정해지지는 않습니다. 후지는 당산비가 감홍보다 낮은데도 선호도가 비슷했고, 연구진은 향 성분 차이를 이유로 봅니다. 시료는 9~11월 수확 직후 상태이며 저장 후에는 달라질 수 있습니다.</p></div>'
++'<div class="card"><h2>참고한 논문</h2><div class="paper" style="margin-top:10px">'
++'<div>Kim K. 외, Relationships between sensory properties and metabolomic profiles of different apple cultivars, <i>Food Chemistry: X</i> 18 (2023)<br><a href="https://doi.org/10.1016/j.fochx.2023.100641" target="_blank" rel="noopener">doi.org/10.1016/j.fochx.2023.100641</a></div>'
++'<div>Kim K. 외, Antioxidant and flavor properties of different apple cultivars grown in Korea, <i>Food Chemistry: X</i> 32 (2025). 홍로·피크닉·이지플·황옥·후지는 항산화 활성이 높고, 아리수·아리원은 낮았습니다. 아리수·아리원은 단맛·신맛·과일향 점수와 선호도가 높았습니다.<br><a href="https://www.sciencedirect.com/science/article/pii/S2590157525011101" target="_blank" rel="noopener">sciencedirect.com/science/article/pii/S2590157525011101</a></div>'
++'<div>Molecules 25(13):3007 (2020), 11개 품종 향 성분과 관능평가. 입안 느낌은 당·유기산, 향은 휘발성 성분이 좌우합니다.<br><a href="https://doi.org/10.3390/molecules25133007" target="_blank" rel="noopener">doi.org/10.3390/molecules25133007</a></div>'
++'<div>Foods 10(5):1051 (2021), 40개 품종 껍질 휘발성 성분 분석.<br><a href="https://doi.org/10.3390/foods10051051" target="_blank" rel="noopener">doi.org/10.3390/foods10051051</a></div>'
++'<div>Antioxidants 9(5):443 (2020), 신품종 10종과 전통 품종 14종의 당·유기산·페놀 분석.<br><a href="https://doi.org/10.3390/antiox9050443" target="_blank" rel="noopener">doi.org/10.3390/antiox9050443</a></div>'
++'<div>도영숙 외, 우리나라 사과 일부 품종의 유기산 함량, 한국식품과학회지 (2005). 홍옥 630.8, 신흥 471.0, 후지 403.8, 쓰가루 364.2 mg%.<br><a href="https://www.koreascience.or.kr/article/JAKO200504637355510.page" target="_blank" rel="noopener">koreascience.or.kr/article/JAKO200504637355510.page</a></div>'
++'</div></div>'
++'<div class="card"><h2>수입 사과는요</h2><p style="margin-top:6px">미국, 일본, 뉴질랜드 등 11개국이 수입위험분석을 요청했지만 사과는 아직 수입이 허용되지 않았습니다. 이 도구는 국내산과 국내에서 재배되는 도입 품종만 다룹니다.</p></div>';
+}
+
+each(ROOT.querySelectorAll("nav button"),function(b){b.onclick=function(){
+  each(ROOT.querySelectorAll("nav button"),function(x){x.setAttribute("aria-selected",x===b)});
+  ["quiz","list","sci"].forEach(function(id){$("#apk-"+id).hidden=(id!==b.dataset.tab)});
+}});
+try{renderQ();renderList();renderSci();}catch(e){var qq=document.getElementById("apk-quiz");if(qq)qq.innerHTML='<div class="card"><p>퀴즈를 불러오지 못했습니다. Safari나 Chrome 앱에서 열어주세요.</p><p class="note">오류: '+String(e&&e.message||e)+'</p></div>'}
+</script>
+
+</body>
+</html>
