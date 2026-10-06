@@ -16,60 +16,60 @@
 </head>
 <body>
 <style>
-#apk{--bg:#f2f5f1;--surface:#ffffff;--ink:#1c2822;--muted:#5b6b62;--line:#d6ddd5;--apple:#b3262e;--apple-soft:#f6e3e3;--leaf:#2f6a45;--leaf-soft:#e0eee4;--gold:#9a7412;--display:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",Roboto,"Malgun Gothic",sans-serif;--body:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",Roboto,"Malgun Gothic",sans-serif;font-size:15px;line-height:1.65;text-align:left;-webkit-text-size-adjust:100%}
+#apk{--bg:#f2f5f1;--surface:#ffffff;--ink:#1c2822;--muted:#5b6b62;--line:#d6ddd5;--apple:#b3262e;--apple-soft:#f6e3e3;--leaf:#2f6a45;--leaf-soft:#e0eee4;--gold:#9a7412;--display:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",Roboto,"Malgun Gothic",sans-serif;--body:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",Roboto,"Malgun Gothic",sans-serif;font-size:17px;line-height:1.65;text-align:left;-webkit-text-size-adjust:100%}
 #apk *,#apk *::before,#apk *::after{box-sizing:border-box}
 #apk [hidden]{display:none!important}
 #apk .bar>i{transition:width .3s}
 #apk .primary,#apk .chip[aria-pressed="true"]{color:#fff}
-#apk{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.65;padding:20px 16px 40px;box-sizing:border-box}
+#apk{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;padding:20px 16px 40px;box-sizing:border-box}
 #apk .wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
 #apk h1,#apk h2,#apk h3{font-family:var(--display);line-height:1.3;margin:0;text-wrap:balance}
-#apk h1{font-size:26px}
-#apk h2{font-size:20px}
-#apk h3{font-size:17px}
+#apk h1{font-size:29px}
+#apk h2{font-size:22px}
+#apk h3{font-size:19px}
 #apk p{margin:0}
 #apk header p{color:var(--muted);margin-top:6px}
 #apk nav{display:flex;gap:4px;border-bottom:1px solid var(--line)}
-#apk nav button{flex:1;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:500 14px var(--body);padding:10px 4px;cursor:pointer}
+#apk nav button{flex:1;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:500 16px var(--body);padding:10px 4px;cursor:pointer}
 #apk nav button[aria-selected="true"]{color:var(--apple);border-bottom-color:var(--apple);font-weight:700}
 #apk button:focus-visible,#apk a:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
 #apk .panel[hidden]{display:none}
 #apk .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
 #apk .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
 #apk .bar>i{display:block;height:100%;background:var(--leaf)}
-#apk .step{font:500 12px var(--body);letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+#apk .step{font:500 13px var(--body);letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
 #apk .opts{display:flex;flex-direction:column;gap:10px;margin-top:14px}
-#apk .opt{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:13px 14px;color:var(--ink);font:500 15px var(--body);cursor:pointer}
-#apk .opt small{display:block;color:var(--muted);font-weight:400;font-size:13px;margin-top:2px}
+#apk .opt{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:13px 14px;color:var(--ink);font:500 17px var(--body);cursor:pointer}
+#apk .opt small{display:block;color:var(--muted);font-weight:400;font-size:15px;margin-top:2px}
 #apk .opt:hover{border-color:var(--leaf)}
-#apk .ghost{background:none;border:0;color:var(--muted);font:400 13px var(--body);cursor:pointer;padding:8px 0;text-decoration:underline}
-#apk .primary{background:var(--apple);color:#fff;border:0;border-radius:8px;padding:11px 16px;font:700 14px var(--body);cursor:pointer}
+#apk .ghost{background:none;border:0;color:var(--muted);font:400 15px var(--body);cursor:pointer;padding:8px 0;text-decoration:underline}
+#apk .primary{background:var(--apple);color:#fff;border:0;border-radius:8px;padding:11px 16px;font:700 16px var(--body);cursor:pointer}
 #apk .res{display:flex;flex-direction:column;gap:14px}
 #apk .rank{display:flex;gap:12px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
-#apk .score{font:700 15px var(--body);color:var(--apple);font-variant-numeric:tabular-nums}
+#apk .score{font:700 17px var(--body);color:var(--apple);font-variant-numeric:tabular-nums}
 #apk .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-#apk .tag{font-size:12px;background:var(--leaf-soft);color:var(--leaf);border-radius:20px;padding:2px 10px}
+#apk .tag{font-size:13px;background:var(--leaf-soft);color:var(--leaf);border-radius:20px;padding:2px 10px}
 #apk .tag.warn{background:var(--apple-soft);color:var(--apple)}
-#apk .map{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin-top:10px;font-size:13px;align-items:center}
+#apk .map{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin-top:10px;font-size:15px;align-items:center}
 #apk .map span{color:var(--muted)}
 #apk .map .bar>i.s{background:var(--apple)}
 #apk .map .bar>i.a{background:var(--gold)}
-#apk .note{font-size:13px;color:var(--muted)}
-#apk .why{margin-top:10px;font-size:14px}
+#apk .note{font-size:15px;color:var(--muted)}
+#apk .why{margin-top:10px;font-size:16px}
 #apk .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
-#apk table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
+#apk table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
 #apk th,#apk td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-#apk th{font-weight:700;color:var(--muted);font-size:12px;white-space:nowrap}
+#apk th{font-weight:700;color:var(--muted);font-size:13px;white-space:nowrap}
 #apk td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
 #apk tr:last-child td{border-bottom:0}
 #apk .vgrid{display:flex;flex-direction:column;gap:12px}
 #apk .chips{display:flex;flex-wrap:wrap;gap:6px}
-#apk .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:20px;padding:5px 12px;font:500 13px var(--body);cursor:pointer}
+#apk .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:20px;padding:5px 12px;font:500 15px var(--body);cursor:pointer}
 #apk .chip[aria-pressed="true"]{background:var(--leaf);color:#fff;border-color:var(--leaf)}
 #apk .paper{display:flex;flex-direction:column;gap:4px}
 #apk .paper a{color:var(--leaf);overflow-wrap:anywhere}
 #apk ul.plain{margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
-#apk footer{font-size:12px;color:var(--muted)}
+#apk footer{font-size:13px;color:var(--muted)}
 #apk .hd{display:flex;gap:14px;align-items:flex-start}
 #apk .hdt{min-width:0;flex:1}
 #apk .pic{position:relative;flex:none;display:block;border-radius:10px;overflow:hidden;background:var(--leaf-soft)}
@@ -267,6 +267,14 @@ each(ROOT.querySelectorAll("nav button"),function(b){b.onclick=function(){
   ["quiz","list","sci"].forEach(function(id){$("#apk-"+id).hidden=(id!==b.dataset.tab)});
 }});
 try{renderQ();renderList();renderSci();}catch(e){var qq=document.getElementById("apk-quiz");if(qq)qq.innerHTML='<div class="card"><p>퀴즈를 불러오지 못했습니다. Safari나 Chrome 앱에서 열어주세요.</p><p class="note">오류: '+String(e&&e.message||e)+'</p></div>'}
+(function(){
+ if(window.parent===window)return;
+ var box=document.getElementById("apk");
+ function send(){try{parent.postMessage({apk:Math.ceil(box.getBoundingClientRect().height)},"*")}catch(e){}}
+ window.addEventListener("load",send);window.addEventListener("resize",send);
+ if(window.ResizeObserver){new ResizeObserver(send).observe(box)}else{setInterval(send,500)}
+ send();
+})();
 </script>
 
 </body>
